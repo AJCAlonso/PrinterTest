@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-printtest" version="1.0.0">
+   <name>PrintTest</name>
+   <js-module name="PrintTest" src="www/PrintTest.js">
+      <clobbers target="PrintTest" />
+   </js-module>
+   <platform name="android">
+      <config-file parent="/*" target="res/xml/config.xml">
+         <feature name="PrintTest">
+            <param name="android-package" value="cordova.plugin.printtest.PrintTest" />
+         </feature>
+      </config-file>
+      <config-file parent="/*" target="AndroidManifest.xml" />
+      <source-file src="src/android/PrintTest.java" target-dir="src/cordova/plugin/printtest/PrintTest" />
+   </platform>
+</plugin>
