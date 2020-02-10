@@ -26,7 +26,7 @@ public class PrintTest extends CordovaPlugin {
             try {
                 int p1 = Integer.parseInt(args.getJSONObject(0).getString("param1"));
                 int p2 = Integer.parseInt(args.getJSONObject(0).getString("param2"));
-                callback.sucess(""+(p1+p1));
+                callback.sucess(""+(p1+p2));
             } catch (Exception e) {
                 callback.error("Something went wrong :" + e);
             }
