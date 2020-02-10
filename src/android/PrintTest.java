@@ -15,7 +15,7 @@ public class PrintTest extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("add")) {
-            this.add(message, callbackContext);
+            this.add(args, callbackContext);
             return true;
         }
         return false;
