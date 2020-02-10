@@ -1,4 +1,4 @@
-package cordova-plugin-printtest;
+package cordova.plugin.printtest;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
