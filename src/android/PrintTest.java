@@ -6,7 +6,7 @@ import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.widget.Toast;
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -17,6 +17,8 @@ public class PrintTest extends CordovaPlugin {
         if (action.equals("add")) {
             this.add(args, callbackContext);
             return true;
+        } else if (action.equals("add")) {
+            nativeToast();
         }
         return false;
     }
@@ -33,5 +35,8 @@ public class PrintTest extends CordovaPlugin {
         } else {
             callback.error("Expected one non-empty JSON argument.");
         }
+    }
+    public void nativeToast(){
+        Toast.makeText(webView.getContext(), "Hello World Cordova Plugin", Toast.LENGHT_SHORT).show();
     }
 }
