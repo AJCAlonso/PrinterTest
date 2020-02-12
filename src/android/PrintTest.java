@@ -17,7 +17,7 @@ public class PrintTest extends CordovaPlugin {
         if (action.equals("add")) {
             this.add(args, callbackContext);
             return true;
-        } else if (action.equals("add")) {
+        } else if (action.equals("nativeToast")) {
             nativeToast();
         }
         return false;
