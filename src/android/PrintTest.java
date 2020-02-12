@@ -37,6 +37,6 @@ public class PrintTest extends CordovaPlugin {
         }
     }
     public void nativeToast(){
-        Toast.makeText(webView.getContext(), "Hello World Cordova Plugin", Toast.LENGHT_SHORT).show();
+        Toast.makeText(webView.getContext(), "Hello World Cordova Plugin", Toast.LENGTH_SHORT).show();
     }
 }
