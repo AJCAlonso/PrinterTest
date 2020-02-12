@@ -24,9 +24,10 @@ public class PrintTest extends CordovaPlugin {
     }
 
     private void add(JSONArray args, CallbackContext callback) {
+        Toast.makeText(webView.getContext(), "Entrei no add :"+args.getJSONObject(0).getString("param1"), Toast.LENGTH_SHORT).show();
         if (args != null) {
             try {
-                Toast.makeText(webView.getContext(), "params :"+args.getJSONObject(0).getString("param1")+" e "+args.getJSONObject(0).getString("param2"), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(webView.getContext(), "params :"+args.getJSONObject(0).getString("param1")+" e "+args.getJSONObject(0).getString("param2"), Toast.LENGTH_SHORT).show();
                 int p1 = Integer.parseInt(args.getJSONObject(0).getString("param1"));
                 int p2 = Integer.parseInt(args.getJSONObject(0).getString("param2"));
                 callback.success(""+(p1+p2));
