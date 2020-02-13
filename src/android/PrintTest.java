@@ -16,11 +16,13 @@ public class PrintTest extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("add")) {
             String message = args.getString(0);
+            Toast.makeText(webView.getContext(), args, Toast.LENGTH_SHORT).show();
             this.add(message, callbackContext);
             //this.add(args, callbackContext);
             return true;
         } else if (action.equals("nativeToast")) {
             nativeToast();
+            return true;
         }
         return false;
     }
