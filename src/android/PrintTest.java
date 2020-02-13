@@ -15,8 +15,9 @@ public class PrintTest extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("add")) {
-            assertNotNull("Response is null.", args);
+           
             String message = args.getString("param1");
+            assertNotNull("Response is null.", args);
             Toast.makeText(webView.getContext(), message, Toast.LENGTH_SHORT).show();
             this.add(message, callbackContext);
             //this.add(args, callbackContext);
