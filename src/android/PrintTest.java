@@ -15,8 +15,9 @@ public class PrintTest extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("add")) {
-            String message = args.getString(0);
-            Toast.makeText(webView.getContext(), args, Toast.LENGTH_SHORT).show();
+            assertNotNull("Response is null.", result);
+            String message = args.getString("param1");
+            Toast.makeText(webView.getContext(), message, Toast.LENGTH_SHORT).show();
             this.add(message, callbackContext);
             //this.add(args, callbackContext);
             return true;
@@ -31,7 +32,7 @@ public class PrintTest extends CordovaPlugin {
     private void add(String args, CallbackContext callback) {
         //int species = args.getJSONObject(0).getInt("param1");
         //String sp2 = args.getJSONObject(0).getString("param2");
-        Toast.makeText(webView.getContext(), args, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(webView.getContext(), args, Toast.LENGTH_SHORT).show();
         if (args != null) {
             try {
                 //Toast.makeText(webView.getContext(), "params :"+args.getJSONObject(0).getString("param1")+" e "+args.getJSONObject(0).getString("param2"), Toast.LENGTH_SHORT).show();
