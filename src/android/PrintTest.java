@@ -17,7 +17,6 @@ public class PrintTest extends CordovaPlugin {
         if (action.equals("add")) {
            
             String message = args.getString("param1");
-            assertNotNull("Response is null.", args);
             Toast.makeText(webView.getContext(), message, Toast.LENGTH_SHORT).show();
             this.add(message, callbackContext);
             //this.add(args, callbackContext);
