@@ -14,7 +14,7 @@
       <source-file src="src/android/PrintTest.java" target-dir="src/cordova/plugin/printtest/PrintTest" />
       
       <framework src="src/android/yourFile.gradle" custom="true" type="gradleReference" />
-      <resource-file src="libGertec/libgedi.aar" target="libs/folibgedi.aar" />
+      <resource-file src="libGertec/libgedi.aar" target="libs/libgedi.aar" />
 
    </platform>
 </plugin>
