@@ -13,8 +13,9 @@ import android.widget.Toast;
 public class PrintTest extends CordovaPlugin {
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("add")) {
+//    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, String args, CallbackContext callbackContext) throws JSONException {
+            if (action.equals("add")) {
            
             String message = args.getString("param1");
             Toast.makeText(webView.getContext(), message, Toast.LENGTH_SHORT).show();
@@ -22,7 +23,7 @@ public class PrintTest extends CordovaPlugin {
             //this.add(args, callbackContext);
             return true;
         } else if (action.equals("nativeToast")) {
-            nativeToast();
+            nativeToast(args);
             return true;
         }
         return false;
