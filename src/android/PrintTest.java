@@ -49,7 +49,7 @@ public class PrintTest extends CordovaPlugin {
             callback.error("Expected one non-empty JSON argument.");
         }
     }
-    public void nativeToast(){
-        Toast.makeText(webView.getContext(), "Hello World Cordova Plugin", Toast.LENGTH_SHORT).show();
+    public void nativeToast(String sMessage){
+        Toast.makeText(webView.getContext(), sMessage, Toast.LENGTH_SHORT).show();
     }
 }
