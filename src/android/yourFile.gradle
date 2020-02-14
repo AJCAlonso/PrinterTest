@@ -6,7 +6,7 @@ repositories{
 }
 
 dependencies {
-   compile(name:'libgedi-0.190121.gpos800', ext:'aar')
+   compile(name:'libgedi', ext:'aar')
 }
 
 android {
