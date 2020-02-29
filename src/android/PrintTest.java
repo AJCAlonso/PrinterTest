@@ -7,10 +7,50 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.Toast;
+
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+
+import br.com.gertec.gedi.GEDI;
+import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Alignment;
+import br.com.gertec.gedi.enums.GEDI_PRNTR_e_BarCodeType;
+import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Status;
+import br.com.gertec.gedi.exceptions.GediException;
+import br.com.gertec.gedi.interfaces.IGEDI;
+import br.com.gertec.gedi.interfaces.IPRNTR;
+import br.com.gertec.gedi.structs.GEDI_PRNTR_st_BarCodeConfig;
+import br.com.gertec.gedi.structs.GEDI_PRNTR_st_PictureConfig;
+import br.com.gertec.gedi.structs.GEDI_PRNTR_st_StringConfig;
 /**
  * This class echoes a string called from JavaScript.
  */
 public class PrintTest extends CordovaPlugin {
+    
+    // Definições
+    private final String IMPRESSORA_ERRO = "Impressora com erro.";
+
+    // Statics
+    private static boolean isPrintInit = false;
+
+    // Vaviáveis iniciais
+    private Activity activity;
+    private Context context;
+
+    // Classe de impressão
+    private IGEDI iGedi = null;
+    private IPRNTR iPrint = null;
+    private GEDI_PRNTR_st_StringConfig stringConfig;
+    private GEDI_PRNTR_st_PictureConfig pictureConfig;
+    private GEDI_PRNTR_e_Status status;
+
+    // Classe de configuração da impressão
+    private ConfigPrint configPrint;
+    private Typeface typeface;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -42,6 +82,7 @@ public class PrintTest extends CordovaPlugin {
             }
         } else {
             callback.error("Expected one non-empty JSON argument.");
+
         }
     }
     public void nativeToast(String sMessage){
