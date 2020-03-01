@@ -94,7 +94,7 @@ public class PrintTest extends CordovaPlugin {
         Toast.makeText(webView.getContext(), sMessage, Toast.LENGTH_SHORT).show();
     }
 
-    public GertecPrinter(Activity a, Context c) {
+    public void GertecPrinter(Activity a, Context c) {
         this.activity = a;
         this.context = c;
         startIGEDI();
