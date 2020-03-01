@@ -1,6 +1,8 @@
 package cordova.plugin.printtest;
 
-public class ConfigPrint {
+import org.apache.cordova.CordovaPlugin;
+
+public class ConfigPrint extends CordovaPlugin {
 
     private String fonte = "NORMAL";
     private String alinhamento;
