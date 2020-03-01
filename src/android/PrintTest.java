@@ -50,7 +50,8 @@ public class PrintTest extends CordovaPlugin {
     private GEDI_PRNTR_e_Status status;
 
     // Classe de configuração da impressão
-    private ConfigPrint configPrint;
+    private ConfigPrint configPrint = new ConfigPrint();
+    //private ConfigPrint configPrint;
     private Typeface typeface;
 
     @Override
