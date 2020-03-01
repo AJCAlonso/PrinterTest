@@ -12,6 +12,7 @@
       </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
       <source-file src="src/android/PrintTest.java" target-dir="src/cordova/plugin/printtest/PrintTest" />
+      <source-file src="src/android/ConfigPrint.java" target-dir="src/cordova/plugin/printtest/PrintTest" />
       
       <framework src="src/android/yourFile.gradle" custom="true" type="gradleReference" />
       <resource-file src="libGertec/libgedi-0.190121.gpos800.aar" target="libs/libgedi-0.190121.gpos800.aar" />
