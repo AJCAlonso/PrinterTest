@@ -47,9 +47,10 @@ public class PrintTest extends CordovaPlugin {
             this.add(args, callbackContext);
             return true;
         } else if (action.equals("nativeToast")) {
+            Context context = this.cordova.getActivity().getApplicationContext();
             String message = args.getJSONObject(0).getString("Message");
             nativeToast(message);
-            gertecPrinter = new GertecPrinter(this.getParent(), callbackContext);
+            gertecPrinter = new GertecPrinter(context, callbackContext);
             gertecPrinter.setConfigImpressao(configPrint);
             return true;
         }
