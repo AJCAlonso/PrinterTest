@@ -52,8 +52,13 @@ public class PrintTest extends CordovaPlugin {
             //nativeToast(message);
             gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
             gertecPrinter.setConfigImpressao(configPrint);
-            String message = gertecPrinter.getStatusImpressora();
-            nativeToast(message);
+            try {
+                String message = gertecPrinter.getStatusImpressora();
+                nativeToast(message);
+            } catch (GediException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
             return true;
         }
         return false;
