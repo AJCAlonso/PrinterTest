@@ -37,7 +37,19 @@ public class PrintTest extends CordovaPlugin {
 
     // Statics
     private static boolean isPrintInit = false;
-
+    public ConfigPrint() {
+        this.fonte = "NORMAL";
+        this.alinhamento = "CENTER";
+        this.tamanho = 20;
+        this.offSet = 0;
+        this.iHeight = 700;
+        this.iWidth = 430;
+        this.lineSpace = 0;
+        this.negrito = true;
+        this.italico = true;
+        this.sublinhado = false;
+        this.avancaLinhas = 10;
+    };
     // Vaviáveis iniciais
     private Activity activity;
     private Context context;
