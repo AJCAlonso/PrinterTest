@@ -37,21 +37,9 @@ public class PrintTest extends CordovaPlugin {
 
     // Statics
     private static boolean isPrintInit = false;
-    public ConfigPrint() {
-        this.fonte = "NORMAL";
-        this.alinhamento = "CENTER";
-        this.tamanho = 20;
-        this.offSet = 0;
-        this.iHeight = 700;
-        this.iWidth = 430;
-        this.lineSpace = 0;
-        this.negrito = true;
-        this.italico = true;
-        this.sublinhado = false;
-        this.avancaLinhas = 10;
-    };
+
     // Vaviáveis iniciais
-    private Activity activity;
+    //private Activity activity;
     private Context context;
 
     // Classe de impressão
@@ -62,9 +50,11 @@ public class PrintTest extends CordovaPlugin {
     private GEDI_PRNTR_e_Status status;
 
     // Classe de configuração da impressão
-    private ConfigPrint configPrint = new ConfigPrint();
+    //private ConfigPrint configPrint = new ConfigPrint();
     //private ConfigPrint configPrint;
     private Typeface typeface;
+
+    private GertecPrinter gertecPrinter;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -75,6 +65,7 @@ public class PrintTest extends CordovaPlugin {
         } else if (action.equals("nativeToast")) {
             String message = args.getJSONObject(0).getString("Message");
             nativeToast(message);
+            gertecPrinter = new GertecPrinter(this, getApplicationContext());
             return true;
         }
         return false;
@@ -102,4 +93,71 @@ public class PrintTest extends CordovaPlugin {
     public void nativeToast(String sMessage){
         Toast.makeText(webView.getContext(), sMessage, Toast.LENGTH_SHORT).show();
     }
+
+    public GertecPrinter(Activity a, Context c) {
+        this.activity = a;
+        this.context = c;
+        startIGEDI();
+    }
+
+    private void startIGEDI() {
+        new Thread(() -> {
+            this.iGedi = GEDI.getInstance(activity);
+            this.iPrint = this.iGedi.getPRNTR();
+            try {
+                this.ImpressoraInit();
+            } catch (GediException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    public void setConfigImpressao(ConfigPrint config){
+
+        this.configPrint = config;
+
+        this.stringConfig = new GEDI_PRNTR_st_StringConfig(new Paint());
+        this.stringConfig.paint.setTextSize(configPrint.getTamanho());
+        this.stringConfig.paint.setTextAlign(Paint.Align.valueOf(configPrint.getAlinhamento()));
+        this.stringConfig.offset = configPrint.getOffSet();
+        this.stringConfig.lineSpace = configPrint.getLineSpace();
+
+        switch (configPrint.getFonte()){
+            case "NORMAL":
+                this.typeface = Typeface.create(configPrint.getFonte(), Typeface.NORMAL );
+                break;
+            case "DEFAULT":
+                this.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL );
+                break;
+            case "DEFAULT BOLD":
+                this.typeface = Typeface.create(Typeface.DEFAULT_BOLD, Typeface.NORMAL );
+                break;
+            case "MONOSPACE":
+                this.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL );
+                break;
+            case "SANS SERIF":
+                this.typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL );
+                break;
+            case "SERIF":
+                this.typeface = Typeface.create(Typeface.SERIF, Typeface.NORMAL );
+                break;
+            default:
+                this.typeface = Typeface.createFromAsset(this.context.getAssets(), configPrint.getFonte());
+        }
+
+        if (this.configPrint.isNegrito() && this.configPrint.isItalico()){
+            typeface = Typeface.create(typeface, Typeface.BOLD_ITALIC);
+        }else if(this.configPrint.isNegrito()){
+            typeface = Typeface.create(typeface, Typeface.BOLD);
+        }else if(this.configPrint.isItalico()){
+            typeface = Typeface.create(typeface, Typeface.ITALIC);
+        }
+
+        if(this.configPrint.isSublinhado()){
+            this.stringConfig.paint.setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        }
+
+        this.stringConfig.paint.setTypeface(this.typeface);
+    }
+
 }
