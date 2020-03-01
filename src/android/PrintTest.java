@@ -33,6 +33,12 @@ import br.com.gertec.gedi.structs.GEDI_PRNTR_st_StringConfig;
 public class PrintTest extends CordovaPlugin {
 
     private GertecPrinter gertecPrinter;
+    
+    private IGEDI iGedi = null;
+    private IPRNTR iPrint = null;
+    private GEDI_PRNTR_e_Status status;
+
+    private ConfigPrint configPrint = new ConfigPrint();
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -43,7 +49,8 @@ public class PrintTest extends CordovaPlugin {
         } else if (action.equals("nativeToast")) {
             String message = args.getJSONObject(0).getString("Message");
             nativeToast(message);
-            //gertecPrinter = new GertecPrinter(this, getApplicationContext());
+            gertecPrinter = new GertecPrinter(this, getApplicationContext());
+            gertecPrinter.setConfigImpressao(configPrint);
             return true;
         }
         return false;
