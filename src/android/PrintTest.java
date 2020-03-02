@@ -58,9 +58,14 @@ public class PrintTest extends CordovaPlugin {
                 gertecPrinter.imprimeTexto(message.toString());
                 gertecPrinter.avancaLinha(10);
                 gertecPrinter.ImpressoraOutput();
-            } catch (GediException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(webView.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }finally {
+                try {
+                    gertecPrinter.ImpressoraOutput();
+                } catch (GediException e) {
+                    e.printStackTrace();
+                }
             }
             return true;
         }
