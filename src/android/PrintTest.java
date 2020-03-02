@@ -57,7 +57,7 @@ public class PrintTest extends CordovaPlugin {
                 nativeToast(message);
             } catch (GediException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(webView.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
             return true;
         }
