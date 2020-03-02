@@ -55,6 +55,9 @@ public class PrintTest extends CordovaPlugin {
             try {
                 String message = gertecPrinter.getStatusImpressora();
                 nativeToast(message);
+                gertecPrinter.imprimeTexto("Teste do Ionic");
+                gertecPrinter.avancaLinha(10);
+                gertecPrinter.ImpressoraOutput();
             } catch (GediException e) {
                 e.printStackTrace();
                 Toast.makeText(webView.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
