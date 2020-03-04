@@ -39,6 +39,13 @@ public class PrintTest extends CordovaPlugin {
     private GEDI_PRNTR_e_Status status;
 
     private ConfigPrint configPrint = new ConfigPrint();
+    
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        gertecPrinter = new GertecPrinter(cordova.getActivity(), cordova.getActivity.getApplicationContext());
+        gertecPrinter.setConfigImpressao(configPrint);
+    }
+    
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -47,11 +54,9 @@ public class PrintTest extends CordovaPlugin {
             this.add(args, callbackContext);
             return true;
         } else if (action.equals("nativeToast")) {
-            Context context = this.cordova.getActivity().getApplicationContext();
-            //String message = args.getJSONObject(0).getString("Message");
-            //nativeToast(message);
-            gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
-            gertecPrinter.setConfigImpressao(configPrint);
+            //Context context = this.cordova.getActivity().getApplicationContext();
+            //gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
+            //gertecPrinter.setConfigImpressao(configPrint);
             try {
                 String message = gertecPrinter.getStatusImpressora();
                 nativeToast(message);
