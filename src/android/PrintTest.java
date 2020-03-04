@@ -44,7 +44,7 @@ public class PrintTest extends CordovaPlugin {
     
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        gertecPrinter = new GertecPrinter(cordova.getActivity(), cordova.getActivity.getApplicationContext());
+        gertecPrinter = new GertecPrinter(cordova.getActivity(), webView.getContext());
         gertecPrinter.setConfigImpressao(configPrint);
     }
     
