@@ -58,6 +58,9 @@ public class PrintTest extends CordovaPlugin {
         } else if (action.equals("Print_QRCode")) {
             this.Print_QRCode(args, callbackContext);
             return true;
+        } else if (action.equals("Print_Ticket")) {
+            this.Print_Ticket(args, callbackContext);
+            return true;
         } else if (action.equals("nativeToast")) {
             //Context context = this.cordova.getActivity().getApplicationContext();
             //gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
@@ -114,6 +117,41 @@ public class PrintTest extends CordovaPlugin {
                     configPrint = new ConfigPrint();
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("Message"), 200, 200, "QR_CODE");
+                    gertecPrinter.ImpressoraOutput();
+                }else{
+                    nativeToast(sStatus);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                gertecPrinter.ImpressoraOutput();
+            } catch (GediException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void Print_Ticket(JSONArray args, CallbackContext callback) {
+        try {
+            if (args != null) {
+                configPrint = new ConfigPrint();
+                configPrint.setItalico(false);
+                configPrint.setNegrito(true);
+                configPrint.setTamanho(20);
+                configPrint.setFonte("MONOSPACE");
+                configPrint.setAlinhamento("CENTER");
+                gertecPrinter.setConfigImpressao(configPrint);
+                String sStatus = gertecPrinter.getStatusImpressora();
+                if(gertecPrinter.isImpressoraOK()) {
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("estac"));
+                    gertecPrinter.avancaLinha(1);
+                    configPrint.setNegrito(false);
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("CNPJ: " + args.getJSONObject(0).getString("cnpj"));
+                    gertecPrinter.avancaLinha(1);
+                    gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("controle"), 200, 200, "QR_CODE");
                     gertecPrinter.ImpressoraOutput();
                 }else{
                     nativeToast(sStatus);

@@ -11,3 +11,7 @@ exports.nativeToast = function (arg0, success, error) {
 exports.Print_QRCode = function (arg0, success, error) {
     exec(success, error, 'PrintTest', 'Print_QRCode', [arg0]);
 };
+
+exports.Print_Ticket = function (arg0, success, error) {
+    exec(success, error, 'PrintTest', 'Print_Ticket', [arg0]);
+};
