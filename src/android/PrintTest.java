@@ -56,6 +56,26 @@ public class PrintTest extends CordovaPlugin {
             this.add(args, callbackContext);
             return true;
         } else if (action.equals("nativeToast")) {
+            if (args != null) {
+                try {
+                    String message = gertecPrinter.getStatusImpressora();
+                    nativeToast(args);
+                    //gertecPrinter.imprimeTexto(message.toString());
+                    gertecPrinter.imprimeBarCode(args, 200, 200, "QR_CODE");
+                    gertecPrinter.avancaLinha(10);
+                    gertecPrinter.ImpressoraOutput();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }finally {
+                    try {
+                        gertecPrinter.ImpressoraOutput();
+                    } catch (GediException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return true;
+            }
+        } else if (action.equals("Print_QRCode")) {
             //Context context = this.cordova.getActivity().getApplicationContext();
             //gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
             //gertecPrinter.setConfigImpressao(configPrint);
