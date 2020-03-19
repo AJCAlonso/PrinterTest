@@ -55,27 +55,10 @@ public class PrintTest extends CordovaPlugin {
         if (action.equals("add")) {
             this.add(args, callbackContext);
             return true;
-        } else if (action.equals("nativeToast")) {
-            if (args != null) {
-                try {
-                    String message = gertecPrinter.getStatusImpressora();
-                    nativeToast(args.getJSONObject(0).getString("Message"));
-                    //gertecPrinter.imprimeTexto(message.toString());
-                    gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("Message"), 200, 200, "QR_CODE");
-                    gertecPrinter.avancaLinha(10);
-                    gertecPrinter.ImpressoraOutput();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }finally {
-                    try {
-                        gertecPrinter.ImpressoraOutput();
-                    } catch (GediException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return true;
-            }
         } else if (action.equals("Print_QRCode")) {
+            this.Print_QRCode(args, callback);
+            return true;
+        } else if (action.equals("nativeToast")) {
             //Context context = this.cordova.getActivity().getApplicationContext();
             //gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
             //gertecPrinter.setConfigImpressao(configPrint);
@@ -123,4 +106,27 @@ public class PrintTest extends CordovaPlugin {
         Toast.makeText(webView.getContext(), sMessage, Toast.LENGTH_SHORT).show();
     }
 
+    private void Print_QRCode(JSONArray args, CallbackContext callback) {
+        try {
+            if (args != null) {
+                String sStatus = gertecPrinter.getStatusImpressora();
+                if(gertecPrinter.isImpressoraOK()) {
+                    configPrint = new ConfigPrint();
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("Message"), 200, 200, "QR_CODE");
+                    gertecPrinter.ImpressoraOutput();
+                }else{
+                    nativeToast(message);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                gertecPrinter.ImpressoraOutput();
+            } catch (GediException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

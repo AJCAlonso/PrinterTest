@@ -7,3 +7,7 @@ module.exports.add = function (arg0, success, error) {
 exports.nativeToast = function (arg0, success, error) {
     exec(success, error, 'PrintTest', 'nativeToast', [arg0]);
 };
+
+exports.Print_QRCode = function (arg0, success, error) {
+    exec(success, error, 'PrintTest', 'Print_QRCode', [arg0]);
+};
