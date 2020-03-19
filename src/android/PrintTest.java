@@ -56,7 +56,7 @@ public class PrintTest extends CordovaPlugin {
             this.add(args, callbackContext);
             return true;
         } else if (action.equals("Print_QRCode")) {
-            this.Print_QRCode(args, callback);
+            this.Print_QRCode(args, callbackContext);
             return true;
         } else if (action.equals("nativeToast")) {
             //Context context = this.cordova.getActivity().getApplicationContext();
