@@ -146,11 +146,30 @@ public class PrintTest extends CordovaPlugin {
                 String sStatus = gertecPrinter.getStatusImpressora();
                 if(gertecPrinter.isImpressoraOK()) {
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("estac"));
-                    gertecPrinter.avancaLinha(1);
                     configPrint.setNegrito(false);
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeTexto("CNPJ: " + args.getJSONObject(0).getString("cnpj"));
-                    gertecPrinter.avancaLinha(1);
+                    gertecPrinter.imprimeTexto("-------------------------------");
+                    gertecPrinter.avancaLinha(2);
+
+                    gertecPrinter.imprimeTexto("Número controle: ");
+                    configPrint.setNegrito(true);
+                    configPrint.setTamanho(40);
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("cnpj"));
+                    
+                    configPrint.setNegrito(false);
+                    configPrint.setTamanho(20);
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("Veiculo: " + args.getJSONObject(0).getString("veiculo"));
+                    gertecPrinter.imprimeTexto("Placa: " + args.getJSONObject(0).getString("placa"));
+                    gertecPrinter.avancaLinha(2);
+                    gertecPrinter.imprimeTexto("-------------------------------");
+
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " "+args.getJSONObject(0).getString("bairro"));
+                    gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
+                    gertecPrinter.avancaLinha(5);
+                    
                     gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("controle"), 200, 200, "QR_CODE");
                     gertecPrinter.ImpressoraOutput();
                 }else{
