@@ -161,12 +161,13 @@ public class PrintTest extends CordovaPlugin {
                     configPrint.setNegrito(false);
                     configPrint.setTamanho(20);
                     gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("Data entrada: " + args.getJSONObject(0).getString("tkdata"));
                     gertecPrinter.imprimeTexto("Veiculo: " + args.getJSONObject(0).getString("veiculo"));
                     gertecPrinter.imprimeTexto("Placa: " + args.getJSONObject(0).getString("placa"));
                     gertecPrinter.avancaLinha(2);
                     gertecPrinter.imprimeTexto("-------------------------------");
 
-                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " "+args.getJSONObject(0).getString("bairro"));
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " - "+args.getJSONObject(0).getString("bairro")+"/"+args.getJSONObject(0).getString("estado"));
                     gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
                     gertecPrinter.avancaLinha(10);
                     
