@@ -159,9 +159,10 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("controle"));
                     
                     configPrint.setNegrito(false);
+                    configPrint.setAlinhamento("LEFT");
                     configPrint.setTamanho(20);
                     gertecPrinter.setConfigImpressao(configPrint);
-                    gertecPrinter.imprimeTexto("Data entrada: " + args.getJSONObject(0).getString("tkdata"));
+                    gertecPrinter.imprimeTexto("Entrada: " + args.getJSONObject(0).getString("tkdata"));
                     gertecPrinter.imprimeTexto("Veiculo: " + args.getJSONObject(0).getString("veiculo"));
                     gertecPrinter.imprimeTexto("Placa: " + args.getJSONObject(0).getString("placa"));
                     gertecPrinter.avancaLinha(2);
@@ -169,10 +170,10 @@ public class PrintTest extends CordovaPlugin {
 
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " - "+args.getJSONObject(0).getString("bairro")+"/"+args.getJSONObject(0).getString("estado"));
                     gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
-                    gertecPrinter.avancaLinha(10);
+                    gertecPrinter.avancaLinha(15);
                     
                     gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("controle"), 200, 200, "QR_CODE");
-                    gertecPrinter.avancaLinha(10);
+                    gertecPrinter.avancaLinha(20);
                     gertecPrinter.ImpressoraOutput();
                 }else{
                     nativeToast(sStatus);
