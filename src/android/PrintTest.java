@@ -167,7 +167,7 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeTexto("Entrada: " + args.getJSONObject(0).getString("tkdata"));
                     gertecPrinter.imprimeTexto("Veiculo: " + args.getJSONObject(0).getString("veiculo"));
-                    gertecPrinter.imprimeTexto("Placa: " + args.getJSONObject(0).getString("placa"));
+                    gertecPrinter.imprimeTexto("Placa  : " + args.getJSONObject(0).getString("placa"));
                     gertecPrinter.avancaLinha(2);
                     gertecPrinter.imprimeTexto("-------------------------------");
 
@@ -206,24 +206,29 @@ public class PrintTest extends CordovaPlugin {
                 if(gertecPrinter.isImpressoraOK()) {
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("estac"));
                     configPrint.setNegrito(false);
+                    configPrint.setAlinhamento("LEFT");
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeTexto("CNPJ: " + args.getJSONObject(0).getString("cnpj"));
                     gertecPrinter.imprimeTexto("-------------------------------");
                     gertecPrinter.avancaLinha(2);
 
-                    gertecPrinter.imprimeTexto("Número controle: ");
-                    configPrint.setNegrito(true);
-                    configPrint.setTamanho(40);
-                    gertecPrinter.setConfigImpressao(configPrint);
-                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("controle"));
-                    
-                    configPrint.setNegrito(false);
-                    configPrint.setAlinhamento("LEFT");
-                    configPrint.setTamanho(20);
-                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("Controle: "+args.getJSONObject(0).getString("controle"));
+                    gertecPrinter.imprimeTexto("Veículo : "+args.getJSONObject(0).getString("veiculo"));
+                    gertecPrinter.imprimeTexto("Placa   : "+args.getJSONObject(0).getString("placa"));
+                    gertecPrinter.avancaLinha(2);
+
+                    gertecPrinter.imprimeTexto("Cliente: " + args.getJSONObject(0).getString("cliente"));
+                    gertecPrinter.imprimeTexto("Serviço: " + args.getJSONObject(0).getString("servico"));
+                    gertecPrinter.imprimeTexto("Convênio: " + args.getJSONObject(0).getString("convenio"));
+                    gertecPrinter.imprimeTexto("Meio Pgto: " + args.getJSONObject(0).getString("meiopgto"));
+                    gertecPrinter.avancaLinha(2);
+
                     gertecPrinter.imprimeTexto("Entrada: " + args.getJSONObject(0).getString("tkdata"));
-                    gertecPrinter.imprimeTexto("Veiculo: " + args.getJSONObject(0).getString("veiculo"));
-                    gertecPrinter.imprimeTexto("Placa: " + args.getJSONObject(0).getString("placa"));
+                    gertecPrinter.imprimeTexto("Saída  : " + args.getJSONObject(0).getString("tkdatasaida"));
+                    gertecPrinter.imprimeTexto("Permanência: " + args.getJSONObject(0).getString("permanencia"));
+                    gertecPrinter.avancaLinha(2);
+
+                    gertecPrinter.imprimeTexto("Valor Pago: " + args.getJSONObject(0).getString("valor"));
                     gertecPrinter.avancaLinha(2);
                     gertecPrinter.imprimeTexto("-------------------------------");
 
@@ -231,8 +236,6 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
                     gertecPrinter.avancaLinha(15);
                     
-                    gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("controle"), 200, 200, "QR_CODE");
-                    gertecPrinter.avancaLinha(20);
                     gertecPrinter.ImpressoraOutput();
                 }else{
                     nativeToast(sStatus);
