@@ -215,26 +215,26 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("Controle: "+args.getJSONObject(0).getString("controle"));
                     gertecPrinter.imprimeTexto("Veículo : "+args.getJSONObject(0).getString("veiculo"));
                     gertecPrinter.imprimeTexto("Placa   : "+args.getJSONObject(0).getString("placa"));
-                    gertecPrinter.avancaLinha(4);
+                    gertecPrinter.avancaLinha(10);
 
-                    gertecPrinter.imprimeTexto("Cliente: " + args.getJSONObject(0).getString("cliente"));
-                    gertecPrinter.imprimeTexto("Serviço: " + args.getJSONObject(0).getString("servico"));
-                    gertecPrinter.imprimeTexto("Convênio: " + args.getJSONObject(0).getString("convenio"));
+                    gertecPrinter.imprimeTexto("Cliente  : " + args.getJSONObject(0).getString("cliente"));
+                    gertecPrinter.imprimeTexto("Serviço  : " + args.getJSONObject(0).getString("servico"));
+                    gertecPrinter.imprimeTexto("Convênio : " + args.getJSONObject(0).getString("convenio"));
                     gertecPrinter.imprimeTexto("Meio Pgto: " + args.getJSONObject(0).getString("meiopgto"));
-                    gertecPrinter.avancaLinha(4);
+                    gertecPrinter.avancaLinha(10);
 
                     gertecPrinter.imprimeTexto("Entrada: " + args.getJSONObject(0).getString("tkdata"));
                     gertecPrinter.imprimeTexto("Saída  : " + args.getJSONObject(0).getString("tkdatasaida"));
                     gertecPrinter.imprimeTexto("Permanência: " + args.getJSONObject(0).getString("permanencia"));
-                    gertecPrinter.avancaLinha(4);
+                    gertecPrinter.avancaLinha(10);
 
-                    gertecPrinter.imprimeTexto("Valor Pago: R$" + args.getJSONObject(0).getString("valor"));
+                    gertecPrinter.imprimeTexto("Valor Pago: R$ " + args.getJSONObject(0).getString("valor"));
                     gertecPrinter.avancaLinha(4);
                     gertecPrinter.imprimeTexto("-------------------------------");
 
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " - "+args.getJSONObject(0).getString("bairro")+"/"+args.getJSONObject(0).getString("estado"));
                     gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
-                    gertecPrinter.avancaLinha(30);
+                    gertecPrinter.avancaLinha(45);
                     
                     gertecPrinter.ImpressoraOutput();
                 }else{
