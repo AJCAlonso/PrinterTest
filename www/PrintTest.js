@@ -15,3 +15,7 @@ exports.Print_QRCode = function (arg0, success, error) {
 exports.Print_Ticket = function (arg0, success, error) {
     exec(success, error, 'PrintTest', 'Print_Ticket', [arg0]);
 };
+
+exports.Print_Ticket_Pagamento = function (arg0, success, error) {
+    exec(success, error, 'PrintTest', 'Print_Ticket_Pagamento', [arg0]);
+};

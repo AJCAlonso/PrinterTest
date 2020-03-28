@@ -61,6 +61,9 @@ public class PrintTest extends CordovaPlugin {
         } else if (action.equals("Print_Ticket")) {
             this.Print_Ticket(args, callbackContext);
             return true;
+        } else if (action.equals("Print_Ticket_Pagamento")) {
+            this.Print_Ticket_Pagamento(args, callbackContext);
+            return true;
         } else if (action.equals("nativeToast")) {
             //Context context = this.cordova.getActivity().getApplicationContext();
             //gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
@@ -134,6 +137,62 @@ public class PrintTest extends CordovaPlugin {
     }
     
     private void Print_Ticket(JSONArray args, CallbackContext callback) {
+        try {
+            if (args != null) {
+                configPrint = new ConfigPrint();
+                configPrint.setItalico(false);
+                configPrint.setNegrito(true);
+                configPrint.setTamanho(20);
+                configPrint.setFonte("MONOSPACE");
+                configPrint.setAlinhamento("CENTER");
+                gertecPrinter.setConfigImpressao(configPrint);
+                String sStatus = gertecPrinter.getStatusImpressora();
+                if(gertecPrinter.isImpressoraOK()) {
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("estac"));
+                    configPrint.setNegrito(false);
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("CNPJ: " + args.getJSONObject(0).getString("cnpj"));
+                    gertecPrinter.imprimeTexto("-------------------------------");
+                    gertecPrinter.avancaLinha(2);
+
+                    gertecPrinter.imprimeTexto("Número controle: ");
+                    configPrint.setNegrito(true);
+                    configPrint.setTamanho(40);
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("controle"));
+                    
+                    configPrint.setNegrito(false);
+                    configPrint.setAlinhamento("LEFT");
+                    configPrint.setTamanho(20);
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("Entrada: " + args.getJSONObject(0).getString("tkdata"));
+                    gertecPrinter.imprimeTexto("Veiculo: " + args.getJSONObject(0).getString("veiculo"));
+                    gertecPrinter.imprimeTexto("Placa: " + args.getJSONObject(0).getString("placa"));
+                    gertecPrinter.avancaLinha(2);
+                    gertecPrinter.imprimeTexto("-------------------------------");
+
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " - "+args.getJSONObject(0).getString("bairro")+"/"+args.getJSONObject(0).getString("estado"));
+                    gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
+                    gertecPrinter.avancaLinha(15);
+                    
+                    gertecPrinter.imprimeBarCode(args.getJSONObject(0).getString("controle"), 200, 200, "QR_CODE");
+                    gertecPrinter.avancaLinha(20);
+                    gertecPrinter.ImpressoraOutput();
+                }else{
+                    nativeToast(sStatus);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                gertecPrinter.ImpressoraOutput();
+            } catch (GediException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void Print_Ticket_Pagamento(JSONArray args, CallbackContext callback) {
         try {
             if (args != null) {
                 configPrint = new ConfigPrint();
