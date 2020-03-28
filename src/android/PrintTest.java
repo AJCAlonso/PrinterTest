@@ -234,7 +234,7 @@ public class PrintTest extends CordovaPlugin {
 
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " - "+args.getJSONObject(0).getString("bairro")+"/"+args.getJSONObject(0).getString("estado"));
                     gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
-                    gertecPrinter.avancaLinha(60);
+                    gertecPrinter.avancaLinha(80);
                     
                     gertecPrinter.ImpressoraOutput();
                 }else{
