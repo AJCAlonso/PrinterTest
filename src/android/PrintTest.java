@@ -212,15 +212,20 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("-------------------------------");
                     gertecPrinter.avancaLinha(2);
 
+                    gertecPrinter.imprimeTexto("Cliente : " + args.getJSONObject(0).getString("cliente"));
+                    if (args.getJSONObject(0).getString("cpf") != null) {
+                        gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
+                    }
+                    gertecPrinter.avancaLinha(15);
+
                     gertecPrinter.imprimeTexto("Controle: "+args.getJSONObject(0).getString("controle"));
                     gertecPrinter.imprimeTexto("Veículo : "+args.getJSONObject(0).getString("veiculo"));
                     gertecPrinter.imprimeTexto("Placa   : "+args.getJSONObject(0).getString("placa"));
                     gertecPrinter.avancaLinha(15);
 
-                    gertecPrinter.imprimeTexto("Cliente  : " + args.getJSONObject(0).getString("cliente"));
+                    
                     gertecPrinter.imprimeTexto("Serviço  : " + args.getJSONObject(0).getString("servico"));
                     gertecPrinter.imprimeTexto("Convênio : " + args.getJSONObject(0).getString("convenio"));
-                    gertecPrinter.imprimeTexto("Meio Pgto: " + args.getJSONObject(0).getString("meiopgto"));
                     gertecPrinter.avancaLinha(15);
 
                     gertecPrinter.imprimeTexto("Entrada: " + args.getJSONObject(0).getString("tkdata"));
@@ -228,6 +233,7 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("Permanência: " + args.getJSONObject(0).getString("permanencia"));
                     gertecPrinter.avancaLinha(15);
 
+                    gertecPrinter.imprimeTexto("Meio Pgto: " + args.getJSONObject(0).getString("meiopgto"));
                     gertecPrinter.imprimeTexto("Valor Pago: R$ " + args.getJSONObject(0).getString("valor"));
                     gertecPrinter.avancaLinha(4);
                     gertecPrinter.imprimeTexto("-------------------------------");
