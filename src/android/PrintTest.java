@@ -90,22 +90,26 @@ public class PrintTest extends CordovaPlugin {
     }
 
     private void add(JSONArray args, CallbackContext callback) {
-        //int species = args.getJSONObject(0).getInt("param1");
-        //String sp2 = args.getJSONObject(0).getString("param2");
-        //Toast.makeText(webView.getContext(), args, Toast.LENGTH_SHORT).show();
-        if (args != null) {
-            try {
-                //Toast.makeText(webView.getContext(), "params :"+args.getJSONObject(0).getString("param1")+" e "+args.getJSONObject(0).getString("param2"), Toast.LENGTH_SHORT).show();
-                int p1 = Integer.parseInt(args.getJSONObject(0).getString("param1"));
-                int p2 = Integer.parseInt(args.getJSONObject(0).getString("param2"));
-                callback.success(""+(p1+p2));
-                //callback.success("3");
-            } catch (Exception e) {
-                callback.error("Something went wrong :" + e);
+        try {
+            if (args != null) {
+                String sStatus = gertecPrinter.getStatusImpressora();
+                if(gertecPrinter.isImpressoraOK()) {
+                    configPrint = new ConfigPrint();
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("Imp OK");
+                    gertecPrinter.ImpressoraOutput();
+                }else{
+                    nativeToast(sStatus);
+                }
             }
-        } else {
-            callback.error("Expected one non-empty JSON argument.");
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                gertecPrinter.ImpressoraOutput();
+            } catch (GediException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void nativeToast(String sMessage){
@@ -213,7 +217,7 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.avancaLinha(2);
 
                     gertecPrinter.imprimeTexto("Cliente : " + args.getJSONObject(0).getString("cliente"));
-                    gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
+                    gertecPrinter.imprimeTexto("CPF     : ->" + args.getJSONObject(0).getString("cpf")+"<-");
                     if (args.getJSONObject(0).getString("cpf") != "") {
                         gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
                     }
