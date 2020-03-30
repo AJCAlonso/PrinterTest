@@ -214,7 +214,7 @@ public class PrintTest extends CordovaPlugin {
 
                     gertecPrinter.imprimeTexto("Cliente : " + args.getJSONObject(0).getString("cliente"));
                     gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
-                    if (args.getJSONObject(0).getString("cpf") != "..-") {
+                    if (args.getJSONObject(0).getString("cpf") != "") {
                         gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
                     }
                     gertecPrinter.avancaLinha(15);
