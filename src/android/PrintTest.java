@@ -221,6 +221,10 @@ public class PrintTest extends CordovaPlugin {
                     if (args.getJSONObject(0).getString("cpf") != "") {
                         gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
                     }
+                    gertecPrinter.imprimeTexto("CPF     : ->" + args.getJSONObject(0).getString("cpf")+"<-");
+                    if (args.getJSONObject(0).getString("cpf") != null && !args.getJSONObject(0).getString("cpf").isEmpty() ) {
+                        gertecPrinter.imprimeTexto("CPF N    : " + args.getJSONObject(0).getString("cpf"));
+                    }
                     gertecPrinter.avancaLinha(15);
 
                     gertecPrinter.imprimeTexto("Controle: "+args.getJSONObject(0).getString("controle"));
