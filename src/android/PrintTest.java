@@ -172,6 +172,12 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("Entrada: " + args.getJSONObject(0).getString("tkdata"));
                     gertecPrinter.imprimeTexto("Veiculo: " + args.getJSONObject(0).getString("veiculo"));
                     gertecPrinter.imprimeTexto("Placa  : " + args.getJSONObject(0).getString("placa"));
+
+                    if (args.getJSONObject(0).getString("avarias") != null && !args.getJSONObject(0).getString("avarias").isEmpty() ) {
+                        gertecPrinter.avancaLinha(15);
+                        gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("avarias"));
+                    }
+
                     gertecPrinter.avancaLinha(2);
                     gertecPrinter.imprimeTexto("-------------------------------");
 
@@ -217,13 +223,9 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.avancaLinha(2);
 
                     gertecPrinter.imprimeTexto("Cliente : " + args.getJSONObject(0).getString("cliente"));
-                    gertecPrinter.imprimeTexto("CPF     : ->" + args.getJSONObject(0).getString("cpf")+"<-");
-                    if (args.getJSONObject(0).getString("cpf") != "") {
-                        gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
-                    }
-                    gertecPrinter.imprimeTexto("CPF N    : ->" + args.getJSONObject(0).getString("cpf")+"<-");
+
                     if (args.getJSONObject(0).getString("cpf") != null && !args.getJSONObject(0).getString("cpf").isEmpty() ) {
-                        gertecPrinter.imprimeTexto("CPF N    : " + args.getJSONObject(0).getString("cpf"));
+                        gertecPrinter.imprimeTexto("CPF     : " + args.getJSONObject(0).getString("cpf"));
                     }
                     gertecPrinter.avancaLinha(15);
 
