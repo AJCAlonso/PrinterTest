@@ -246,6 +246,12 @@ public class PrintTest extends CordovaPlugin {
 
                     gertecPrinter.imprimeTexto("Meio Pgto: " + args.getJSONObject(0).getString("meiopgto"));
                     gertecPrinter.imprimeTexto("Valor Pago: R$ " + args.getJSONObject(0).getString("valor"));
+ 
+                    if (args.getJSONObject(0).getString("cpf") != null && !args.getJSONObject(0).getString("cpf").isEmpty() ) {
+                        gertecPrinter.avancaLinha(15);
+                        gertecPrinter.imprimeTexto("RPS : " + args.getJSONObject(0).getString("rpsId"));
+                        gertecPrinter.avancaLinha(15);
+                    }
                     gertecPrinter.avancaLinha(4);
                     gertecPrinter.imprimeTexto("-------------------------------");
 
