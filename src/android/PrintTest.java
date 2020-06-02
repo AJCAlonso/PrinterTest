@@ -205,7 +205,7 @@ public class PrintTest extends CordovaPlugin {
             }
         }
     }
-    private void Print_Ticket_Pagamento(JSONArray args, CallbackContext callback) {
+    private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
         try {
             if (args != null) {
                 configPrint = new ConfigPrint();
@@ -261,7 +261,7 @@ public class PrintTest extends CordovaPlugin {
         }
     }
     
-    private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
+    private void Print_Ticket_Pagamento(JSONArray args, CallbackContext callback) {
         try {
             if (args != null) {
                 configPrint = new ConfigPrint();
