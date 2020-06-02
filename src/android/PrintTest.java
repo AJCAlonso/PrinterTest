@@ -64,6 +64,9 @@ public class PrintTest extends CordovaPlugin {
         } else if (action.equals("Print_Ticket_Pagamento")) {
             this.Print_Ticket_Pagamento(args, callbackContext);
             return true;
+        } else if (action.equals("Print_Sum_Fechamento")) {
+            this.Print_Sum_Fechamento(args, callbackContext);
+            return true;
         } else if (action.equals("nativeToast")) {
             //Context context = this.cordova.getActivity().getApplicationContext();
             //gertecPrinter = new GertecPrinter(this.cordova.getActivity(), context);
@@ -203,6 +206,62 @@ public class PrintTest extends CordovaPlugin {
         }
     }
     private void Print_Ticket_Pagamento(JSONArray args, CallbackContext callback) {
+        try {
+            if (args != null) {
+                configPrint = new ConfigPrint();
+                configPrint.setItalico(false);
+                configPrint.setNegrito(true);
+                configPrint.setTamanho(20);
+                configPrint.setFonte("MONOSPACE");
+                configPrint.setAlinhamento("CENTER");
+                gertecPrinter.setConfigImpressao(configPrint);
+                String sStatus = gertecPrinter.getStatusImpressora();
+                if(gertecPrinter.isImpressoraOK()) {
+                    gertecPrinter.imprimeTexto("Resumo Fechamento");
+                    configPrint.setNegrito(false);
+                    configPrint.setAlinhamento("LEFT");
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto("-------------------------------");
+                    gertecPrinter.avancaLinha(4);
+
+                    gertecPrinter.imprimeTexto("Abertura   : R$ " + args.getJSONObject(0).getString("totAbertura"));
+                    gertecPrinter.imprimeTexto("Suprimento : R$ " + args.getJSONObject(0).getString("totSuprim"));
+                    gertecPrinter.imprimeTexto("Sangria    : R$ " + args.getJSONObject(0).getString("totSangria"));
+                    gertecPrinter.imprimeTexto("Fechamento : R$ " + args.getJSONObject(0).getString("totFecham"));
+                    gertecPrinter.avancaLinha(15);
+
+                    
+                    gertecPrinter.imprimeTexto("Meios de Pagamento : ");
+                    gertecPrinter.avancaLinha(2);
+
+                    JSONArray c = jsonObj.getJSONArray("totalPorMeio");
+                    for (int i = 0 ; i < c.length(); i++) {
+                        gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + " : R$ " + c.getJSONObject(i).getString("total"));
+                    }
+                    gertecPrinter.avancaLinha(15);
+ 
+                    gertecPrinter.avancaLinha(4);
+                    gertecPrinter.imprimeTexto("-------------------------------");
+
+                    gertecPrinter.avancaLinha(92);
+                    
+                    gertecPrinter.ImpressoraOutput();
+                }else{
+                    nativeToast(sStatus);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                gertecPrinter.ImpressoraOutput();
+            } catch (GediException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
         try {
             if (args != null) {
                 configPrint = new ConfigPrint();

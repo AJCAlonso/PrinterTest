@@ -19,3 +19,7 @@ exports.Print_Ticket = function (arg0, success, error) {
 exports.Print_Ticket_Pagamento = function (arg0, success, error) {
     exec(success, error, 'PrintTest', 'Print_Ticket_Pagamento', [arg0]);
 };
+
+exports.Print_Sum_Fechamento = function (arg0, success, error) {
+    exec(success, error, 'PrintTest', 'Print_Sum_Fechamento', [arg0]);
+};
