@@ -232,6 +232,8 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("-------------------------------");
                     gertecPrinter.avancaLinha(4);
 
+                    gertecPrinter.imprimeTexto("Abertura   : R$ " + args.getJSONObject(0).getString("totAbertura"));
+                    String t = getRoundOffValue(args.getJSONObject(0).getString("totAbertura"));
                     gertecPrinter.imprimeTexto("Abertura   : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totAbertura")));
                     gertecPrinter.imprimeTexto("Suprimento : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totSuprim")));
                     gertecPrinter.imprimeTexto("Sangria    : R$ " + args.getJSONObject(0).getString("totSangria"));
