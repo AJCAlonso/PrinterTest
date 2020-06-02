@@ -205,6 +205,13 @@ public class PrintTest extends CordovaPlugin {
             }
         }
     }
+
+    private static String getRoundOffValue(String value){
+        double amount = Double.parseDouble(value);
+        DecimalFormat df = new DecimalFormat("###.###.##0,00");
+        return df.format(amount);
+    }
+
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
         try {
             if (args != null) {
@@ -224,8 +231,8 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("-------------------------------");
                     gertecPrinter.avancaLinha(4);
 
-                    gertecPrinter.imprimeTexto("Abertura   : R$ " + args.getJSONObject(0).getString("totAbertura"));
-                    gertecPrinter.imprimeTexto("Suprimento : R$ " + args.getJSONObject(0).getString("totSuprim"));
+                    gertecPrinter.imprimeTexto("Abertura   : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totAbertura")));
+                    gertecPrinter.imprimeTexto("Suprimento : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totSuprim")));
                     gertecPrinter.imprimeTexto("Sangria    : R$ " + args.getJSONObject(0).getString("totSangria"));
                     gertecPrinter.imprimeTexto("Fechamento : R$ " + args.getJSONObject(0).getString("totFecham"));
                     gertecPrinter.avancaLinha(15);
