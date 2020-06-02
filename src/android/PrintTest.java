@@ -29,6 +29,7 @@ import br.com.gertec.gedi.structs.GEDI_PRNTR_st_BarCodeConfig;
 import br.com.gertec.gedi.structs.GEDI_PRNTR_st_PictureConfig;
 import br.com.gertec.gedi.structs.GEDI_PRNTR_st_StringConfig;
 
+import java.text.DecimalFormat;
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -208,9 +209,8 @@ public class PrintTest extends CordovaPlugin {
 
     private static String getRoundOffValue(String value){
         double amount = Double.parseDouble(value);
-        //DecimalFormat df = new DecimalFormat("###.###.##0,00");
-        //return df.format(amount);
-        return String.format("%..2f", amount);
+        DecimalFormat df = new DecimalFormat("###.###.##0,00");
+        return df.format(amount);
     }
 
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
