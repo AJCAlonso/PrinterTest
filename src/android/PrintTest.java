@@ -208,8 +208,9 @@ public class PrintTest extends CordovaPlugin {
 
     private static String getRoundOffValue(String value){
         double amount = Double.parseDouble(value);
-        DecimalFormat df = new DecimalFormat("###.###.##0,00");
-        return df.format(amount);
+        //DecimalFormat df = new DecimalFormat("###.###.##0,00");
+        //return df.format(amount);
+        return String.format("%..2f", amount);
     }
 
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
