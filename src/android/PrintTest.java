@@ -207,9 +207,9 @@ public class PrintTest extends CordovaPlugin {
         }
     }
 
-    private static String getRoundOffValue(String value){
+    public static String getRoundOffValue(String value){
         double amount = Double.parseDouble(value);
-        DecimalFormat df = new DecimalFormat("###.###.##0,00");
+        DecimalFormat df = new DecimalFormat("###,###,##0.00");
         return df.format(amount);
     }
 
