@@ -30,6 +30,7 @@ import br.com.gertec.gedi.structs.GEDI_PRNTR_st_PictureConfig;
 import br.com.gertec.gedi.structs.GEDI_PRNTR_st_StringConfig;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat; 
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -233,7 +234,9 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.avancaLinha(4);
 
                     gertecPrinter.imprimeTexto("Data/Hora");
-                    gertecPrinter.imprimeTexto("Abertura   : " + getRoundOffValue(args.getJSONObject(0).getString("dtAbert")));
+                    SimpleDateFormat sTo = new SimpleDateFormat("dd/MM/yyyy");
+
+                    gertecPrinter.imprimeTexto("Abertura   : " + sto.format(getRoundOffValue(args.getJSONObject(0).getString("dtAbert"))));
                     gertecPrinter.imprimeTexto("Fechamento : " + getRoundOffValue(args.getJSONObject(0).getString("dtFech")));
                     gertecPrinter.avancaLinha(15);
 
