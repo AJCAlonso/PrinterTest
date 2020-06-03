@@ -244,6 +244,8 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.avancaLinha(4);
 
                     gertecPrinter.imprimeTexto("Data/Hora");
+                    gertecPrinter.imprimeTexto("Abertura   : " + args.getJSONObject(0).getString("dtAbert"));
+                    gertecPrinter.imprimeTexto("Fechamento : " + args.getJSONObject(0).getString("dtFech"));
 
                     gertecPrinter.imprimeTexto("Abertura   : " + getDateOffValue(args.getJSONObject(0).getString("dtAbert")));
                     gertecPrinter.imprimeTexto("Fechamento : " + getDateOffValue(args.getJSONObject(0).getString("dtFech")));
