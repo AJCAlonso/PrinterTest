@@ -217,9 +217,11 @@ public class PrintTest extends CordovaPlugin {
     }
 
     public static String getDateOffValue(String value){
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        Date d1 = df.parse("2020-06-03T10:10:38.4230236");
-        return df.format(d1);
+        String result = "01/01/1999 00:00h";
+        if (value.length() > 16) {
+            result = value.substring(8,2)+"/"+value.substring(5,2)+"/"+value.substring(0,4)+"/"+value.substring(11,2)+" "+value.substring(5,5)+"h";
+        }
+        return result;
     }
 
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
