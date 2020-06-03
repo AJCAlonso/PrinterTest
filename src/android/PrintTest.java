@@ -218,7 +218,7 @@ public class PrintTest extends CordovaPlugin {
 
     public static String getDateOffValue(String value){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        Date d1 = df.parse(value);
+        Date d1 = df.parse("2020-06-03T10:10:38.4230236");
         return df.format(d1);
     }
 
