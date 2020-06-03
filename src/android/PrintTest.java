@@ -216,7 +216,7 @@ public class PrintTest extends CordovaPlugin {
         return df.format(amount);
     }
 
-    public static String getDateOffValue(String value){
+    public String getDateOffValue(String value){
         String result = "01/01/1999 00:00h";
         if (value.length() > 16) {
             result = value.substring(8,2)+"/"+value.substring(5,2)+"/"+value.substring(0,4)+"/"+value.substring(11,2)+" "+value.substring(5,5)+"h";
