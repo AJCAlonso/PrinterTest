@@ -217,7 +217,7 @@ public class PrintTest extends CordovaPlugin {
     }
 
     public String getDateOffValue(String value){
-        String result = "01/01/1999 00:00h";
+        String result = value;
         //if (value.length() > 16) {
         //    result = value.substring(8,2)+"/"+value.substring(5,2)+"/"+value.substring(0,4)+"/"+value.substring(11,2)+" "+value.substring(5,5)+"h";
        // }
@@ -251,7 +251,7 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("Fechamento : " + getDateOffValue(args.getJSONObject(0).getString("dtFech")));
                     gertecPrinter.avancaLinha(15);
 
-                    gertecPrinter.imprimeTexto("Movimentos (Entrada/Saida) : " + getRoundOffValue(args.getJSONObject(0).getString("qtdeTotal")));
+                    gertecPrinter.imprimeTexto("Movimentos (Ent/Sai) : " + args.getJSONObject(0).getString("qtdeTotal"));
                     gertecPrinter.avancaLinha(15);
 
                     gertecPrinter.imprimeTexto("Abertura   : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totAbertura")));
