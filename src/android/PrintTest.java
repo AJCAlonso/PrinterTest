@@ -218,8 +218,8 @@ public class PrintTest extends CordovaPlugin {
 
     public String getDateOffValue(String value){
         String result = value;
-        if (value.length() > 16) {
-            result = value.substring(8,10)+"/"+value.substring(5,7)+"/"+value.substring(0,4)+"/"+value.substring(11,13)+" "+value.substring(12,16)+"h";
+        if (value.length() > 18) {
+            result = value.substring(8,10)+"/"+value.substring(5,7)+"/"+value.substring(0,4)+" "+value.substring(11,19);
         }
         return result;
     }
@@ -238,15 +238,14 @@ public class PrintTest extends CordovaPlugin {
                 if(gertecPrinter.isImpressoraOK()) {
                     gertecPrinter.imprimeTexto("Resumo Fechamento");
                     configPrint.setNegrito(false);
+                    gertecPrinter.setConfigImpressao(configPrint);
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("operador"));
                     configPrint.setAlinhamento("LEFT");
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeTexto("-------------------------------");
                     gertecPrinter.avancaLinha(4);
 
                     gertecPrinter.imprimeTexto("Data/Hora");
-                    gertecPrinter.imprimeTexto("Abertura   : " + args.getJSONObject(0).getString("dtAbert"));
-                    gertecPrinter.imprimeTexto("Fechamento : " + args.getJSONObject(0).getString("dtFech"));
-
                     gertecPrinter.imprimeTexto("Abertura   : " + getDateOffValue(args.getJSONObject(0).getString("dtAbert")));
                     gertecPrinter.imprimeTexto("Fechamento : " + getDateOffValue(args.getJSONObject(0).getString("dtFech")));
                     gertecPrinter.avancaLinha(15);
