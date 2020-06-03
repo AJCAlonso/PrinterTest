@@ -215,9 +215,10 @@ public class PrintTest extends CordovaPlugin {
     }
 
     public static String getDateOffValue(String value){
+        String result = value;
         SimpleDateFormat sFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sTo = new SimpleDateFormat("dd/MM/yyyy H:mm");
-        String result = sTo.format(sFrom.parse(value));
+        result = sTo.format(sFrom.parse(result));
         return result;
     }
 
