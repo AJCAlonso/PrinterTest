@@ -238,12 +238,14 @@ public class PrintTest extends CordovaPlugin {
                 if(gertecPrinter.isImpressoraOK()) {
                     gertecPrinter.imprimeTexto("Resumo Fechamento");
                     configPrint.setNegrito(false);
-                    gertecPrinter.setConfigImpressao(configPrint);
-                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("operador"));
                     configPrint.setAlinhamento("LEFT");
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeTexto("-------------------------------");
                     gertecPrinter.avancaLinha(4);
+
+                    gertecPrinter.imprimeTexto("Operador");
+                    gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("operador"));
+                    gertecPrinter.avancaLinha(15);
 
                     gertecPrinter.imprimeTexto("Data/Hora");
                     gertecPrinter.imprimeTexto("Abertura   : " + getDateOffValue(args.getJSONObject(0).getString("dtAbert")));
