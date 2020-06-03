@@ -218,9 +218,9 @@ public class PrintTest extends CordovaPlugin {
 
     public String getDateOffValue(String value){
         String result = value;
-        if (result.length() > 16) {
-            result = result.substring(8,2);//+"/"+result.substring(5,2)+"/"+result.substring(0,4)+"/"+result.substring(11,2)+" "+result.substring(5,5)+"h";
-        }
+        //if (result.length() > 16) {
+        //    result = result.substring(8,2);//+"/"+result.substring(5,2)+"/"+result.substring(0,4)+"/"+result.substring(11,2)+" "+result.substring(5,5)+"h";
+        //}
         return result;
     }
 
