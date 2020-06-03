@@ -214,6 +214,13 @@ public class PrintTest extends CordovaPlugin {
         return df.format(amount);
     }
 
+    public static String getDateOffValue(String value){
+        SimpleDateFormat sFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sTo = new SimpleDateFormat("dd/MM/yyyy H:mm");
+        String result = sTo.format(sFrom.parse(value));
+        return result;
+    }
+
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
         try {
             if (args != null) {
@@ -234,10 +241,9 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.avancaLinha(4);
 
                     gertecPrinter.imprimeTexto("Data/Hora");
-                    SimpleDateFormat sTo = new SimpleDateFormat("dd/MM/yyyy");
 
-                    gertecPrinter.imprimeTexto("Abertura   : " + sTo.format(getRoundOffValue(args.getJSONObject(0).getString("dtAbert"))));
-                    gertecPrinter.imprimeTexto("Fechamento : " + getRoundOffValue(args.getJSONObject(0).getString("dtFech")));
+                    gertecPrinter.imprimeTexto("Abertura   : " + getDateOffValue(args.getJSONObject(0).getString("dtAbert"))));
+                    gertecPrinter.imprimeTexto("Fechamento : " + getDateOffValue(args.getJSONObject(0).getString("dtFech")));
                     gertecPrinter.avancaLinha(15);
 
                     gertecPrinter.imprimeTexto("Movimentos (Entrada/Saida) : " + getRoundOffValue(args.getJSONObject(0).getString("qtdeTotal")));
