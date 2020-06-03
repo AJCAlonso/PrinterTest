@@ -218,8 +218,8 @@ public class PrintTest extends CordovaPlugin {
         String result = value;
         SimpleDateFormat sFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sTo = new SimpleDateFormat("dd/MM/yyyy H:mm");
-        result = sTo.format(sFrom.parse(result));
-        return result;
+        String resultSTR = sTo.format(sFrom.parse(result));
+        return resultSTR;
     }
 
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
