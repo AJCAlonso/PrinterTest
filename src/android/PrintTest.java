@@ -31,6 +31,8 @@ import br.com.gertec.gedi.structs.GEDI_PRNTR_st_StringConfig;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat; 
+import java.text.DateFormat;
+import java.util.Date;
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -215,11 +217,9 @@ public class PrintTest extends CordovaPlugin {
     }
 
     public static String getDateOffValue(String value){
-        String result = value;
-        SimpleDateFormat sFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat sTo = new SimpleDateFormat("dd/MM/yyyy H:mm");
-        String resultSTR = sTo.format(sFrom.parse(result));
-        return resultSTR;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date d1 = df.parse(value);
+        return df.format(d1);
     }
 
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
