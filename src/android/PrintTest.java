@@ -218,9 +218,9 @@ public class PrintTest extends CordovaPlugin {
 
     public String getDateOffValue(String value){
         String result = value;
-        //if (value.length() > 16) {
-        //    result = value.substring(8,2)+"/"+value.substring(5,2)+"/"+value.substring(0,4)+"/"+value.substring(11,2)+" "+value.substring(5,5)+"h";
-       // }
+        if (result.length() > 16) {
+            result = result.substring(8,2)+"/"+result.substring(5,2)+"/"+result.substring(0,4)+"/"+result.substring(11,2)+" "+result.substring(5,5)+"h";
+        }
         return result;
     }
 
@@ -266,7 +266,7 @@ public class PrintTest extends CordovaPlugin {
 
                     JSONArray c = args.getJSONObject(0).getJSONArray("totalPorMeio");
                     for (int i = 0 ; i < c.length(); i++) {
-                        gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + " : R$ " + c.getJSONObject(i).getString("total"));
+                        gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + " : R$ " + getRoundOffValue(c.getJSONObject(i).getString("total")));
                     }
                     gertecPrinter.avancaLinha(15);
  
