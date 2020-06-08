@@ -263,10 +263,6 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.imprimeTexto("Suprimento :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totSuprim")), 32 - ("Suprimento :").length()));
                     gertecPrinter.imprimeTexto("Sangria    :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totSangria")), 32 - ("Sangria    :").length()));
                     gertecPrinter.imprimeTexto("Fechamento :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totFecham")), 32 - ("Fechamento :").length()));
-                    // gertecPrinter.imprimeTexto("Abertura   : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totAbertura")));
-                    // gertecPrinter.imprimeTexto("Suprimento : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totSuprim")));
-                    // gertecPrinter.imprimeTexto("Sangria    : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totSangria")));
-                    // gertecPrinter.imprimeTexto("Fechamento : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totFecham")));
                     gertecPrinter.avancaLinha(15);
 
                     
@@ -276,7 +272,7 @@ public class PrintTest extends CordovaPlugin {
                     double sumPorMeio = 0.00;
                     JSONArray c = args.getJSONObject(0).getJSONArray("totalPorMeio");
                     for (int i = 0 ; i < c.length(); i++) {
-                        gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + fixedLengthString( "R$ "+getRoundOffValue(c.getJSONObject(i).getString("total")), 32 - (getRoundOffValue(c.getJSONObject(i).getString("meioPag"))).length()));
+                        gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + fixedLengthString( "R$ "+getRoundOffValue(c.getJSONObject(i).getString("total")), 32 - (c.getJSONObject(i).getString("meioPag")).length()));
                         //gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + " : R$ " + getRoundOffValue(c.getJSONObject(i).getString("total")));
                         sumPorMeio += c.getJSONObject(i).getDouble("total");
                     }
