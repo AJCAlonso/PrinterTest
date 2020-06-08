@@ -163,7 +163,7 @@ public class PrintTest extends CordovaPlugin {
                     configPrint.setNegrito(false);
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeTexto("CNPJ: " + args.getJSONObject(0).getString("cnpj"));
-                    gertecPrinter.imprimeTexto("-------------------------------");
+                    gertecPrinter.imprimeTexto("--------------------------------");
                     gertecPrinter.avancaLinha(2);
 
                     gertecPrinter.imprimeTexto("Número controle: ");
@@ -186,7 +186,7 @@ public class PrintTest extends CordovaPlugin {
                     }
 
                     gertecPrinter.avancaLinha(2);
-                    gertecPrinter.imprimeTexto("-------------------------------");
+                    gertecPrinter.imprimeTexto("--------------------------------");
 
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " - "+args.getJSONObject(0).getString("bairro")+"/"+args.getJSONObject(0).getString("estado"));
                     gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
@@ -260,9 +260,9 @@ public class PrintTest extends CordovaPlugin {
                     gertecPrinter.avancaLinha(15);
 
                     gertecPrinter.imprimeTexto("Abertura   :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totAbertura")), 32 - ("Abertura   :").length()));
-                    gertecPrinter.imprimeTexto("Suprimento :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totAbertura")), 32 - ("Suprimento :").length()));
-                    gertecPrinter.imprimeTexto("Sangria    :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totAbertura")), 32 - ("Sangria    :").length()));
-                    gertecPrinter.imprimeTexto("Fechamento :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totAbertura")), 32 - ("Fechamento :").length()));
+                    gertecPrinter.imprimeTexto("Suprimento :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totSuprim")), 32 - ("Suprimento :").length()));
+                    gertecPrinter.imprimeTexto("Sangria    :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totSangria")), 32 - ("Sangria    :").length()));
+                    gertecPrinter.imprimeTexto("Fechamento :" + fixedLengthString( "R$ "+getRoundOffValue(args.getJSONObject(0).getString("totFecham")), 32 - ("Fechamento :").length()));
                     // gertecPrinter.imprimeTexto("Abertura   : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totAbertura")));
                     // gertecPrinter.imprimeTexto("Suprimento : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totSuprim")));
                     // gertecPrinter.imprimeTexto("Sangria    : R$ " + getRoundOffValue(args.getJSONObject(0).getString("totSangria")));
@@ -276,7 +276,7 @@ public class PrintTest extends CordovaPlugin {
                     double sumPorMeio = 0.00;
                     JSONArray c = args.getJSONObject(0).getJSONArray("totalPorMeio");
                     for (int i = 0 ; i < c.length(); i++) {
-                        gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + fixedLengthString( "R$ "+getRoundOffValue(c.getJSONObject(i).getString("total")), 32 - (getRoundOffValue(c.getJSONObject(i).getString("total"))).length()));
+                        gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + fixedLengthString( "R$ "+getRoundOffValue(c.getJSONObject(i).getString("total")), 32 - (getRoundOffValue(c.getJSONObject(i).getString("meioPag"))).length()));
                         //gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + " : R$ " + getRoundOffValue(c.getJSONObject(i).getString("total")));
                         sumPorMeio += c.getJSONObject(i).getDouble("total");
                     }
@@ -286,8 +286,6 @@ public class PrintTest extends CordovaPlugin {
  
                     gertecPrinter.avancaLinha(4);
                     gertecPrinter.imprimeTexto("--------------------------------");
-                    gertecPrinter.imprimeTexto("1234567890123456789012345678901234567890");
-                    gertecPrinter.imprimeTexto("qwertyuiopasdfghjklzxcvbnmqwertyuiopasdf");
 
                     gertecPrinter.avancaLinha(92);
                     
@@ -324,7 +322,7 @@ public class PrintTest extends CordovaPlugin {
                     configPrint.setAlinhamento("LEFT");
                     gertecPrinter.setConfigImpressao(configPrint);
                     gertecPrinter.imprimeTexto("CNPJ: " + args.getJSONObject(0).getString("cnpj"));
-                    gertecPrinter.imprimeTexto("-------------------------------");
+                    gertecPrinter.imprimeTexto("--------------------------------");
                     gertecPrinter.avancaLinha(2);
 
                     gertecPrinter.imprimeTexto("Cliente : " + args.getJSONObject(0).getString("cliente"));
@@ -358,8 +356,8 @@ public class PrintTest extends CordovaPlugin {
                         gertecPrinter.avancaLinha(15);
                     }
                     gertecPrinter.avancaLinha(4);
-                    gertecPrinter.imprimeTexto("-------------------------------");
-
+                    gertecPrinter.imprimeTexto("--------------------------------");
+                    
                     gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("endereco")+ " - "+args.getJSONObject(0).getString("bairro")+"/"+args.getJSONObject(0).getString("estado"));
                     gertecPrinter.imprimeTexto("CEP: " + args.getJSONObject(0).getString("cep"));
                     gertecPrinter.avancaLinha(92);
