@@ -276,6 +276,8 @@ public class PrintTest extends CordovaPlugin {
  
                     gertecPrinter.avancaLinha(4);
                     gertecPrinter.imprimeTexto("-------------------------------");
+                    gertecPrinter.imprimeTexto("1234567890123456789012345678901234567890");
+                    gertecPrinter.imprimeTexto("qwertyuiopasdfghjklzxcvbnmqwertyuiopasdf");
 
                     gertecPrinter.avancaLinha(92);
                     
