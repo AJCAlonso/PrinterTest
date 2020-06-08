@@ -224,6 +224,10 @@ public class PrintTest extends CordovaPlugin {
         return result;
     }
 
+    public static String fixedLengthString(String string, int length) {
+        return String.format("%1$"+length+ "s", string);
+    }
+
     private void Print_Sum_Fechamento(JSONArray args, CallbackContext callback) {
         try {
             if (args != null) {
@@ -271,7 +275,9 @@ public class PrintTest extends CordovaPlugin {
                         gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + " : R$ " + getRoundOffValue(c.getJSONObject(i).getString("total")));
                         sumPorMeio += c.getJSONObject(i).getDouble("total");
                     }
-                    gertecPrinter.imprimeTexto( "Total Pagamento : R$ " + sumPorMeio);
+                    //fixedLengthString( "R$ "+String.format("%.2f", sumPorMeio), 32 - ("Total Pagamento").length());
+                    gertecPrinter.imprimeTexto( "Total Pagamento : R$ " + String.format("%.2f", sumPorMeio));
+                    gertecPrinter.imprimeTexto( "Total Pagamento" + fixedLengthString( "R$ "+String.format("%.2f", sumPorMeio), 32 - ("Total Pagamento").length()));
                     gertecPrinter.avancaLinha(15);
  
                     gertecPrinter.avancaLinha(4);
