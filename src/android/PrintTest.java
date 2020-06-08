@@ -273,10 +273,8 @@ public class PrintTest extends CordovaPlugin {
                     JSONArray c = args.getJSONObject(0).getJSONArray("totalPorMeio");
                     for (int i = 0 ; i < c.length(); i++) {
                         gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + fixedLengthString( "R$ "+getRoundOffValue(c.getJSONObject(i).getString("total")), 32 - (c.getJSONObject(i).getString("meioPag")).length()));
-                        //gertecPrinter.imprimeTexto(c.getJSONObject(i).getString("meioPag") + " : R$ " + getRoundOffValue(c.getJSONObject(i).getString("total")));
                         sumPorMeio += c.getJSONObject(i).getDouble("total");
                     }
-                    //gertecPrinter.imprimeTexto( "Total Pagamento : R$ " + String.format("%.2f", sumPorMeio));
                     gertecPrinter.imprimeTexto( "Total Pagamento" + fixedLengthString( "R$ "+String.format("%.2f", sumPorMeio), 32 - ("Total Pagamento").length()));
                     gertecPrinter.avancaLinha(15);
  
