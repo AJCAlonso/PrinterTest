@@ -185,6 +185,12 @@ public class PrintTest extends CordovaPlugin {
                         gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("avarias"));
                     }
 
+                    if (args.getJSONObject(0).getString("mensagemTicket") != null && !args.getJSONObject(0).getString("mensagemTicket").isEmpty() ) {
+                        gertecPrinter.avancaLinha(2);
+                        gertecPrinter.imprimeTexto("--------------------------------");
+                        gertecPrinter.imprimeTexto(args.getJSONObject(0).getString("mensagemTicket"));
+                    }
+
                     gertecPrinter.avancaLinha(2);
                     gertecPrinter.imprimeTexto("--------------------------------");
 
